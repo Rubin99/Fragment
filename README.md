@@ -1,3 +1,7 @@
+## Coding Challenge:
+
+![CC](./CC.png)
+
 ## Task 1A:
 
 ![Task1A](./Task1A.png)

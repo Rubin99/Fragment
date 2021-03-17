@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +30,7 @@ public class SimpleFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     public SimpleFragment() {
         // Required empty public constructor
@@ -68,6 +71,8 @@ public class SimpleFragment extends Fragment {
                 inflater.inflate(R.layout.fragment_simple, container, false);
         final RadioGroup radioGroup = rootView.findViewById(R.id.radio_group);
 
+        final RatingBar ratingBar = rootView.findViewById(R.id.ratingBar);
+
     radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -88,7 +93,18 @@ public class SimpleFragment extends Fragment {
             }
         }
     });
-
+        // Set the rating bar onCheckedChanged listener.
+        ratingBar.setOnRatingBarChangeListener (new RatingBar.OnRatingBarChangeListener() {
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar,
+                                                float rating, boolean fromUser) {
+                        // Get rating and show Toast with rating.
+                        String myRating = (getString(R.string.my_rating) +
+                                String.valueOf(ratingBar.getRating()));
+                        Toast.makeText(getContext(), myRating,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
 // Return the View for the fragment's UI.
         return rootView;
     }
