@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/my_fragment_color"
     android:orientation="vertical"
-    tools:context="com.example.fragmentexample1.SimpleFragment">
+    tools:context="com.example.fragmentexample2.SimpleFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

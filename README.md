@@ -1,3 +1,11 @@
+## Task 2B:
+
+![Task2B](./Task2B.png)
+
+## Task 2A:
+
+![Task2A](./Task2A.png)
+
 ## Coding Challenge:
 
 ![CC](./CC.png)
