@@ -2,6 +2,11 @@
 
 ![HW](./HW.gif)
 
+## Coding Challenge:
+
+![CC](https://user-images.githubusercontent.com/41099034/111661722-612f4a00-8837-11eb-9c6f-232ad5cecd41.gif)
+
+![CC](./CC.png)
 
 ## Task 2B:
 
@@ -11,9 +16,6 @@
 
 ![Task2A](./Task2A.png)
 
-## Coding Challenge:
-
-![CC](./CC.png)
 
 ## Task 1A:
 
