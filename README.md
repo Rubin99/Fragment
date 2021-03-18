@@ -1,3 +1,8 @@
+## HomeWork:
+
+![HW](./HW.gif)
+
+
 ## Task 2B:
 
 ![Task2B](./Task2B.png)

@@ -9,38 +9,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
     private Button mButtun;
+    private Button mButton2;
     private boolean isFragmentDisplayed = false;
     static final String STATE_FRAGMENT = "state_of_fragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_second);
         mButtun = findViewById(R.id.open_button);
+        mButton2 = findViewById(R.id.prev_button);
 
-        // Set the click listener for the button.
-        mButtun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isFragmentDisplayed) {
-                    displayFragment();
-                } else {
-                    closeFragment();
-                }
-            }
-        });
+        Intent intent = getIntent();
 
         if (savedInstanceState != null) {
             isFragmentDisplayed =
                     savedInstanceState.getBoolean(STATE_FRAGMENT);
             if (isFragmentDisplayed) {
                 // If the fragment is displayed, change button to "close".
-                mButtun.setText(R.string.close);
+                mButton2.setText(R.string.previous);
+
             }
         }
+
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -49,21 +43,21 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
     }
 
-        public void displayFragment(){
-            SimpleFragment simpleFragment = SimpleFragment.newInstance();
-    
-            // Get the FragmentManager and start a transaction.
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    
-            // Add the SimpleFragment
-            fragmentTransaction.add(R.id.fragment_container, simpleFragment).addToBackStack(null).commit();
-            // Update button text
-            mButtun.setText(R.string.close);
-            // Set boolean flag to indicate fragment is open.
-            isFragmentDisplayed = true;
-    
-        }
+    public void displayFragment(){
+        SimpleFragment simpleFragment = SimpleFragment.newInstance();
+
+        // Get the FragmentManager and start a transaction.
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Add the SimpleFragment
+        fragmentTransaction.add(R.id.fragment_container, simpleFragment).addToBackStack(null).commit();
+        // Update button text
+        mButton2.setText(R.string.previous);
+        // Set boolean flag to indicate fragment is open.
+        isFragmentDisplayed = true;
+
+    }
     public void closeFragment() {
         // Get the FragmentManager.
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -77,13 +71,27 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.remove(simpleFragment).commit();
         }
         // Update the Button text.
-        mButtun.setText(R.string.open);
+        mButton2.setText(R.string.next);
         // Set boolean flag to indicate fragment is closed.
         isFragmentDisplayed = false;
     }
 
+    public void prevFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        SimpleFragment simpleFragment = (SimpleFragment) fragmentManager
+                .findFragmentById(R.id.fragment_container);
+        if (simpleFragment != null) {
+            // Create and commit the transaction to remove the fragment.
+            FragmentTransaction fragmentTransaction =
+                    fragmentManager.beginTransaction();
+            fragmentTransaction.remove(simpleFragment).commit();
+        }
+        isFragmentDisplayed = false;
+    }
+
     public void launchSecondActivity(View view) {
-        Intent intent =new Intent(this, SecondActivity.class);
+        Intent intent =new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }
